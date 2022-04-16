@@ -1,0 +1,72 @@
+<!doctype html>
+<html  th:lang="${#locale.language}"  xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.0.2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+
+</head>
+
+<body class="container">
+
+    <p th:text="#{login}" class="display-4 text-center text-primary mt-3 mb-3"></p>
+
+    <form class="mt-5" th:method="post" th:object="${loginKey}" th:action="@{/login}">
+
+        <!-- email girişi -->
+        <div class="row">
+            <div class="col-md-1" th:text="#{email}"></div>
+            <div class="col-md-11">
+                <input class="form-control w-25" type="text" id="loginEmail" th:field="*{loginEmail}">
+                <div th:if="${#fields.hasErrors('loginEmail')}" th:errors="*{loginEmail}"></div>
+            </div>
+        </div>
+
+            <br/>
+
+        <!-- şifre girişi -->
+        <div class="row">
+            <div class="col-md-1" th:text="#{parola}"></div>
+            <div class="col-md-11">
+                <input class="form-control w-25" type="password" id="loginPassword" th:field="*{loginPassword}">
+                <div th:if="${#fields.hasErrors('loginPassword')}" th:errors="*{loginPassword}"></div>
+            </div>
+        </div>
+
+            <br/>
+
+        <!-- butonlar -->
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+
+                <button type="submit" class="btn btn-primary">Gönder</button>
+                <button type="reset" class="btn btn-warning">Temizle</button>
+
+            </div>
+        </div>
+
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ends codes -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
