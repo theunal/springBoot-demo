@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.swing.*;
 import java.util.Optional;
 
 @Controller
@@ -58,7 +59,7 @@ public class ComputerController {
 
          Optional<Computer> computer =  computerRepository.findById(id);
 
-         if (!computer.isEmpty()) {
+         if (computer.isPresent()) {
              var entity = computer.get();
              return "bulundu: "+entity;
          }else {
@@ -77,6 +78,60 @@ public class ComputerController {
             var entity = computer.get();
             computerRepository.deleteById(id);
             return "silindi: "+entity;
+        }else {
+            return "böyle bir data bulunamadı: "+id;
+        }
+    }
+
+    // http://localhost:8080/computer/update/4
+    @GetMapping("/computer/update/{id}")
+    @ResponseBody
+    public String update(@PathVariable(name = "id") Long id) {
+
+        Optional<Computer> computer =  computerRepository.findById(id);
+
+        if (computer.isPresent()) {
+
+            Computer computer1 = Computer
+                    .builder()
+                    .computerId(id)
+                    .computerName("asus laptop")
+                    .computerTrade("asus tuf")
+                    .computerPrice(18950)
+                    .build();
+            computerRepository.save(computer1);
+            var entity = computer.get();
+            return "data bulundu: "+entity +"<br/><br/>güncellendi: "+computer1;
+        }else {
+            return "böyle bir data bulunamadı: "+id;
+        }
+    }
+
+    // http://localhost:8080/computer/updateComputer/3
+    @GetMapping("/computer/updateComputer/{id}")
+    @ResponseBody
+    public String updateComputer(@PathVariable(name = "id") Long id) {
+
+        System.setProperty("java.awt.headless","false");
+        Optional<Computer> computer =  computerRepository.findById(id);
+        String name,trade;
+        double price;
+
+        if (computer.isPresent()) {
+            var entity = computer.get();
+            var entity1 = computer.get();
+
+            name = JOptionPane.showInputDialog("bilgisayar adı giriniz:");
+            trade = JOptionPane.showInputDialog("bilgisayar markası giriniz:");
+            price = Double.parseDouble(JOptionPane.showInputDialog("fiyatını giriniz:"));
+
+            entity.setComputerName(name);
+            entity.setComputerTrade(trade);
+            entity.setComputerPrice(price);
+
+            computerRepository.save(entity);
+
+            return "data bulundu: "+entity +"<br/><br/>güncellendi: "+entity1;
         }else {
             return "böyle bir data bulunamadı: "+id;
         }
