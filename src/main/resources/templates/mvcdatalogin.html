@@ -13,31 +13,32 @@
 
 <body class="container">
 
-    <p th:text="#{login}" class="display-4 text-center text-primary mt-3 mb-3"></p>
+<p th:text="#{login}" class="display-4 text-center text-primary mt-3 mb-3"></p>
 
-    <form class="mt-5" th:method="post" th:object="${loginKey}" th:action="@{/login}">
+    <form class="mt-5" th:method="post" th:object="${mvc_data_key}" th:action="@{/mvcdatalogin}">
+
 
         <!-- email girişi -->
         <div class="row">
             <div class="col-md-1" th:text="#{email}"></div>
             <div class="col-md-11">
-                <input class="form-control w-25" type="text" id="loginEmail" th:field="*{loginEmail}">
-                <div th:if="${#fields.hasErrors('loginEmail')}" th:errors="*{loginEmail}"></div>
-            </div>
+                <input class="form-control w-25" type="email" id="email" th:field="*{email}">
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="font-size: 11px;color:red"></div>
+        </div>
         </div>
 
-            <br/>
+        <br/>
 
         <!-- şifre girişi -->
         <div class="row">
             <div class="col-md-1" th:text="#{password}"></div>
             <div class="col-md-11">
-                <input class="form-control w-25" type="password" id="loginPassword" th:field="*{loginPassword}">
-                <div th:if="${#fields.hasErrors('loginPassword')}" th:errors="*{loginPassword}"></div>
+                <input class="form-control w-25" type="password" id="password" th:field="*{password}">
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="font-size: 11px;color:red"></div>
             </div>
         </div>
 
-            <br/>
+        <br/>
 
         <!-- butonlar -->
         <div class="row">
@@ -49,6 +50,9 @@
 
             </div>
         </div>
+
+
+
 
     </form>
 
