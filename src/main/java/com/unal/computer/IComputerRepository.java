@@ -1,4 +1,4 @@
-package com.unal.data;
+package com.unal.computer;
 
 import org.springframework.data.repository.CrudRepository;
 

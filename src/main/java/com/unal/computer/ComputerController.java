@@ -1,4 +1,4 @@
-package com.unal.data;
+package com.unal.computer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +17,7 @@ public class ComputerController {
     private IComputerRepository computerRepository;
 
     public ComputerController(IComputerRepository computerRepository) {
+
         this.computerRepository = computerRepository;
     }
 
