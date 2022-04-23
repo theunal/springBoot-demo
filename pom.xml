@@ -54,6 +54,15 @@
             <version>2.8.6</version>
         </dependency>
 
+        <!--NOT: bu kutuphane restte default olarak gelen Json yapısını XML'cevirir.-->
+        <!--jackson: Json To Xml-->
+        <!--
+         <dependency>
+             <groupId>com.fasterxml.jackson.dataformat</groupId>
+             <artifactId>jackson-dataformat-xml</artifactId>
+         </dependency>
+        -->
+
         <!--Templates thymeleaf-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
