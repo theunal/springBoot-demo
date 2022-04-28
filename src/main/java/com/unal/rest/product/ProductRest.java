@@ -1,6 +1,7 @@
 package com.unal.rest.product;
 
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -63,6 +64,29 @@ public class ProductRest {
 
        return ResponseEntity.ok().header("server_key","serverdan gelen gizli bilgi").
                body("@restcontroller geldi");
+    }
+
+
+    ///////////////////////////////////////////////////////////
+    //COOKIE
+    //client Server'a Cookie gönderdi
+    //requestHeader: ben header içine bir data gönderiyorum
+    // http://localhost:8080/rest/cookie
+    @GetMapping("/rest/cookie")
+    public ResponseEntity<?> getCookie(@CookieValue(value = "key_response_cookie66", defaultValue = "default cookie") String data) {
+        String headerData = "@RestController geldiğinin kanıtı: " + data;
+        System.out.println(headerData);
+        return ResponseEntity.ok(headerData);
+    }
+
+    ///sERVER cLİENT
+    // http://localhost:8080/rest/response/cookie2
+    @GetMapping("/rest/response/cookie2")
+    public ResponseEntity<?> getCookie2() {
+        return ResponseEntity
+                .ok()
+                .header(HttpHeaders.SET_COOKIE,"key_response_cookie44")
+                .body("@RestController ==> ");
     }
 
 

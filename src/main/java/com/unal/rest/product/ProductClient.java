@@ -133,4 +133,30 @@ public class ProductClient {
 
     }
 
+    //Browserda saklanır: browser cache belleğini silerseniz silinir.
+
+    //client Server'a Cookie gönderdi
+    // http://localhost:8080/rest/response/cookie
+    @GetMapping("/rest/response/cookie")
+    @ResponseBody
+    public ResponseEntity<?> getCookie() {
+        return ResponseEntity
+                .ok()
+                .header(HttpHeaders.SET_COOKIE,"key_response_cookie")
+                .body("@RestController ==> ");
+    }
+
+
+    // http://localhost:8080/controller/response/cookie/header2
+    @GetMapping("/controller/response/cookie/header2")
+    @ResponseBody
+    public String getCookieController2() {
+        String URL = "http://localhost:8080/rest/response/cookie2";
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.exchange(URL, HttpMethod.GET, HttpEntity.EMPTY, String.class);
+        String data=response.getHeaders().getFirst(HttpHeaders.SET_COOKIE);
+        String body = response.getBody();
+        return "@Controller ==> " + body+" "+data;
+    }
+
 }
