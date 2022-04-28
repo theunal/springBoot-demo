@@ -1,4 +1,4 @@
-package com.unal.Dto;
+package com.unal.rest.product;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

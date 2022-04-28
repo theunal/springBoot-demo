@@ -58,9 +58,8 @@ public class ComputerClient { // client
         RestTemplate template = new RestTemplate();
 
         ResponseEntity<ComputerDto> responseEntity = template.exchange(url, HttpMethod.GET, HttpEntity.EMPTY,ComputerDto.class);
-        ComputerDto computerBody = responseEntity.getBody();
 
-        return computerBody;
+        return responseEntity.getBody();
     }
 
 
